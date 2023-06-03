@@ -67,16 +67,24 @@ namespace MilitariaRabit
             var consumer = new EventingBasicConsumer(_model);
             consumer.Received += (model, ea) =>
             {
-                var body = ea.Body;
-                message = Encoding.UTF8.GetString(body.ToArray());                
+                try
+                {
+                    var body = ea.Body;
+                    message = Encoding.UTF8.GetString(body.ToArray());
 #if DEBUG
-                //wyświetlenie wiadomości w trybie DEBUG
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\tTestDziałania");
-                Console.WriteLine(message);
-                Console.ForegroundColor = ConsoleColor.Black;
+                    //wyświetlenie wiadomości w trybie DEBUG
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\tTest działania biblioteki");
+                    Console.WriteLine(message);
+                    Console.ForegroundColor = ConsoleColor.Black;
 #endif
-                action(message);
+                    //akcja którą użytkownik definiuje w cliencie
+                    action(message);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             };
             _model.BasicConsume(queue: queue,
                     autoAck: true,

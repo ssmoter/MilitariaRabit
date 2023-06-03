@@ -5,9 +5,9 @@ namespace MilitariaRabit.Model
     public class Email
     {
         public int Id { get; set; }
-        public string? Sender { get; set; } = "Sender";
+        public string? Sender { get; set; } = "Sender@test.com";
         public string? Name { get; set; } = "Name";
-        public string? Receiver { get; set; } = "Receiver";
+        public string? Receiver { get; set; } = "Receiver@test.com";
         public string? Title { get; set; }="Title";
         public string? Description { get; set; }="Description";
         public Enums.TypOfEmail TypOfEmail { get; set; } = Enums.TypOfEmail.SmtpClient;
